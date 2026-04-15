@@ -388,3 +388,39 @@ footer {
   .upload-card, .form-card { padding: 20px; }
   .gallery-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== ADMIN NAV ===== */
+#admin-nav { display: flex; align-items: center; }
+
+.btn-admin-login {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-admin-login:hover { border-color: var(--accent); color: var(--accent); }
+
+#admin-logueado { display: flex; align-items: center; gap: 10px; }
+
+.admin-email-label {
+  font-size: 13px;
+  color: var(--text2);
+}
+
+.btn-ghost-sm {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-ghost-sm:hover { background: var(--bg2); }
