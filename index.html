@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería & Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="logo">Galería</span>
+      <nav>
+        <a href="#galeria">Fotos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== GALERÍA ===================== -->
+  <section id="galeria">
+    <div class="section-header">
+      <h2>Galería de imágenes</h2>
+      <p>Sube, edita o elimina imágenes desde aquí</p>
+    </div>
+
+    <!-- Formulario de subida -->
+    <div class="upload-card">
+      <h3>Subir nueva imagen</h3>
+      <div class="upload-area" id="dropzone">
+        <input type="file" id="file-input" accept="image/*" hidden/>
+        <div class="drop-icon">📁</div>
+        <p>Arrastra una imagen aquí o <button onclick="document.getElementById('file-input').click()">selecciona un archivo</button></p>
+        <img id="preview" src="" alt="" style="display:none"/>
+      </div>
+      <div class="upload-fields">
+        <input type="text" id="descripcion" placeholder="Descripción de la imagen"/>
+        <input type="text" id="tags" placeholder="Tags separados por comas (ej: naturaleza, viaje)"/>
+        <button class="btn-primary" onclick="subirImagen()">Subir imagen</button>
+      </div>
+      <p id="upload-status" class="status-msg"></p>
+    </div>
+
+    <!-- Grid de imágenes -->
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="loading-state">Cargando imágenes...</div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section id="contacto">
+    <div class="section-header">
+      <h2>Formulario de contacto</h2>
+      <p>Los mensajes se guardan directo en Supabase</p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="f-nombre" placeholder="Tu nombre"/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="f-email" placeholder="tu@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea id="f-mensaje" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+      </div>
+      <button class="btn-primary" onclick="enviarContacto()">Enviar mensaje</button>
+      <p id="form-status" class="status-msg"></p>
+    </div>
+  </section>
+
+  <!-- Modal editar imagen -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <h3>Editar imagen</h3>
+      <input type="text" id="edit-descripcion" placeholder="Descripción"/>
+      <input type="text" id="edit-tags" placeholder="Tags"/>
+      <input type="hidden" id="edit-id"/>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="guardarEdicion()">Guardar</button>
+        <button class="btn-ghost" onclick="cerrarModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Proyecto de práctica — Supabase + Cloudflare Pages</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="galeria.js"></script>
+  <script src="contacto.js"></script>
+</body>
+</html>
