@@ -144,10 +144,10 @@ async function eliminarImagen(id, url) {
   const nombreArchivo = url.split('/galeria/')[1]
 
   // Borramos del Storage
-  await supabase.storage.from('galeria').remove([nombreArchivo])
+  await db.storage.from('galeria').remove([nombreArchivo])
 
   // Borramos de la tabla
-  const { error } = await supabase.from('galeria').delete().eq('id', id)
+  const { error } = await db.from('galeria').delete().eq('id', id)
 
   if (error) {
     alert('Error al eliminar: ' + error.message)
