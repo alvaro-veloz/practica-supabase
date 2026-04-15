@@ -23,7 +23,7 @@ async function enviarContacto() {
   mostrarStatusForm(status, 'Enviando...', '')
 
   // Insertamos en la tabla "contactos" de Supabase
-  const { error } = await supabase
+  const { error } = await db
     .from('contactos')
     .insert([{ nombre, email, mensaje }])
 

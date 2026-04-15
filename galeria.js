@@ -53,7 +53,7 @@ async function subirImagen() {
   // 1. Subimos el archivo al bucket "galeria" en Storage
   const nombreArchivo = `${Date.now()}-${archivoSeleccionado.name}`
 
-  const { error: storageError } = await supabase
+  const { error: storageError } = await db
     .storage
     .from('galeria')
     .upload(nombreArchivo, archivoSeleccionado)
@@ -64,7 +64,7 @@ async function subirImagen() {
   }
 
   // 2. Obtenemos la URL pública de la imagen
-  const { data: urlData } = supabase
+  const { data: urlData } = db
     .storage
     .from('galeria')
     .getPublicUrl(nombreArchivo)
@@ -72,7 +72,7 @@ async function subirImagen() {
   const urlPublica = urlData.publicUrl
 
   // 3. Guardamos los datos en la tabla "galeria"
-  const { error: dbError } = await supabase
+  const { error: dbError } = await db
     .from('galeria')
     .insert([{ url: urlPublica, descripcion, tags }])
 
@@ -96,7 +96,7 @@ async function cargarGaleria() {
   const grid = document.getElementById('gallery-grid')
   grid.innerHTML = '<div class="loading-state">Cargando imágenes...</div>'
 
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('galeria')
     .select('*')
     .order('created_at', { ascending: false })
@@ -185,7 +185,7 @@ async function guardarEdicion() {
   const descripcion = document.getElementById('edit-descripcion').value.trim()
   const tags = document.getElementById('edit-tags').value.trim()
 
-  const { error } = await supabase
+  const { error } = await db
     .from('galeria')
     .update({ descripcion, tags })
     .eq('id', id)
